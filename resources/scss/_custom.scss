@@ -1,0 +1,252 @@
+// Light color overrides
+$sidebar-width: 240px;
+$sidebar-bg: #f9f9f9;              // Very light grey background
+$sidebar-color: #444;              // Soft grey text
+$sidebar-active-bg: #efefef;       // Subtle highlight on hover/active
+$sidebar-active-color: #222;       // Slightly darker active text
+
+// Sidebar styling
+.sidebar {
+    width: $sidebar-width;
+    min-height: 100vh;
+    background-color: $sidebar-bg;
+    color: $sidebar-color;
+    transition: all 0.3s;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    padding-top: 56px; // Height of navbar
+
+    border-right: none !important;
+    box-shadow: none !important;
+
+    .sidebar-header {
+        padding: 20px;
+        background-color: #ffffff; // Lighter header
+    }
+
+    .sidebar-menu {
+        padding-left: 0;
+        list-style: none;
+
+        li {
+            position: relative;
+
+            a {
+                padding: 12px 20px;
+                display: block;
+                color: $sidebar-color;
+                text-decoration: none;
+                transition: all 0.3s;
+
+                &:hover {
+                    color: $sidebar-active-color;
+                    background-color: $sidebar-active-bg;
+                }
+
+                i {
+                    margin-right: 10px;
+                }
+            }
+
+            &.active > a {
+                color: $sidebar-active-color;
+                background-color: $sidebar-active-bg;
+            }
+        }
+    }
+}
+
+// Main content area
+.main-content {
+    margin-left: $sidebar-width;
+    padding: 70px 20px 20px;
+    min-height: calc(100vh - 56px);
+    background-color: $body-bg;
+}
+
+// Navbar
+.navbar {
+    padding: 0.5rem 1rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1001;
+    
+    .navbar-brand {
+        margin-left: $sidebar-width;
+    }
+}
+
+// Cards
+.card {
+    margin-bottom: 20px;
+    border: none;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    
+    .card-header {
+        background-color: #fff;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+        font-weight: 600;
+    }
+}
+
+// Forms
+.form-control, .form-select {
+    border-radius: 0.25rem;
+    padding: 0.375rem 0.75rem;
+}
+
+// Buttons
+.btn {
+    border-radius: 0.25rem;
+    padding: 0.375rem 0.75rem;
+}
+
+// Tables
+.table {
+    th {
+        font-weight: 600;
+    }
+}
+
+// Alerts
+.alert {
+    border-radius: 0.25rem;
+    padding: 0.75rem 1.25rem;
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+    .sidebar {
+        margin-left: -$sidebar-width;
+        
+        &.active {
+            margin-left: 0;
+        }
+    }
+    
+    .main-content {
+        margin-left: 0;
+    }
+    
+    .navbar-brand {
+        margin-left: 0 !important;
+    }
+}
+
+// Colors
+$gov-blue: #1a3e8c;
+$gov-gold: #ffc72c;
+$gov-dark-blue: #0d2b5b;
+$gov-light-gray: #f8f9fa;
+
+// Topbar
+.topbar {
+    height: 60px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    background-color: $gov-dark-blue !important;
+    border-bottom: 3px solid $gov-gold;
+
+    .topbar-logo {
+        height: 40px;
+    }
+
+    .navbar-brand {
+        display: flex;
+        align-items: center;
+        font-family: 'Noto Sans', sans-serif;
+        color: white !important;
+
+        small {
+            font-size: 0.7rem;
+            opacity: 0.8;
+        }
+    }
+
+    .badge-notification {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        font-size: 0.6rem;
+        padding: 0.2rem 0.35rem;
+    }
+}
+
+
+// Login page specific styles
+.login-page {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    background-color: #f8fafc;
+}
+
+.login-image {
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(52, 144, 220, 0.7);
+    }
+}
+
+.login-content {
+    padding: 3rem;
+    max-width: 500px;
+    width: 100%;
+}
+
+.login-logo {
+    text-align: center;
+    margin-bottom: 2rem;
+    
+    img {
+        height: 80px;
+    }
+}
+
+.login-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #2d3748;
+}
+
+.login-footer {
+    text-align: center;
+    margin-top: 2rem;
+    color: #718096;
+    font-size: 0.875rem;
+}
+
+// Responsive adjustments
+@media (max-width: 767.98px) {
+    .login-page {
+        height: auto;
+        min-height: 100vh;
+        padding: 2rem 0;
+    }
+    
+    .login-image {
+        height: 300px !important;
+    }
+    
+    .login-content {
+        padding: 2rem;
+    }
+}
