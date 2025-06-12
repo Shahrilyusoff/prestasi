@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('bahagian');
             $table->string('kriteria');
+            $table->text('keterangan');
             $table->integer('wajaran');
             $table->string('kumpulan_pyd')->nullable(); // null for all groups
             $table->timestamps();
