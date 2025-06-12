@@ -303,7 +303,7 @@ class EvaluationController extends Controller
         if (!$evaluation->canSubmit(Auth::user()) || !Auth::user()->isPYD()) {
             abort(403);
         }
-        
+
         // Validate all required fields in Bahagian II
         $request->validate([
             'kegiatan_sumbangan' => 'required|array|min:1',
@@ -317,15 +317,41 @@ class EvaluationController extends Controller
             'latihan_diperlukan.*.nama' => 'required|string',
             'latihan_diperlukan.*.sebab' => 'required|string',
         ]);
-        
+
+        // Convert the arrays to proper format
+        $kegiatan_sumbangan = [];
+        foreach ($request->kegiatan_sumbangan as $item) {
+            $kegiatan_sumbangan[] = [
+                'kegiatan' => $item['kegiatan'],
+                'peringkat' => $item['peringkat']
+            ];
+        }
+
+        $latihan_dihadiri = [];
+        foreach ($request->latihan_dihadiri as $item) {
+            $latihan_dihadiri[] = [
+                'nama' => $item['nama'],
+                'tarikh' => $item['tarikh'],
+                'tempat' => $item['tempat']
+            ];
+        }
+
+        $latihan_diperlukan = [];
+        foreach ($request->latihan_diperlukan as $item) {
+            $latihan_diperlukan[] = [
+                'nama' => $item['nama'],
+                'sebab' => $item['sebab']
+            ];
+        }
+
         $evaluation->update([
             'status' => 'draf_ppp',
-            'kegiatan_sumbangan' => $request->kegiatan_sumbangan,
-            'latihan_dihadiri' => $request->latihan_dihadiri,
-            'latihan_diperlukan' => $request->latihan_diperlukan,
+            'kegiatan_sumbangan' => $kegiatan_sumbangan,
+            'latihan_dihadiri' => $latihan_dihadiri,
+            'latihan_diperlukan' => $latihan_diperlukan,
         ]);
-        
-        return redirect()->route('evaluations.show', $evaluation)
+
+        return redirect()->route('evaluations.show', ['evaluation' => $evaluation->id, 'step' => 'III'])
             ->with('success', 'Penilaian berjaya diserahkan untuk penilaian PPP.');
     }
 

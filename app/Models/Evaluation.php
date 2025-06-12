@@ -159,15 +159,15 @@ class Evaluation extends Model
 
     public function canSubmit($user)
     {
-        if ($user->isPYD() && $this->status === 'draf_pyd') {
+        if ($user->isPYD() && in_array($this->status, ['draf_pyd', 'reopened'])) {
             return true;
         }
 
-        if ($user->isPPP() && $this->status === 'draf_ppp') {
+        if ($user->isPPP() && in_array($this->status, ['draf_ppp', 'reopened'])) {
             return true;
         }
 
-        if ($user->isPPK() && $this->status === 'draf_ppk') {
+        if ($user->isPPK() && in_array($this->status, ['draf_ppk', 'reopened'])) {
             return true;
         }
 

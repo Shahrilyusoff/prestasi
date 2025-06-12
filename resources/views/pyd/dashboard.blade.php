@@ -64,7 +64,7 @@
                     @if($pendingEvaluations->count() > 0)
                         <div class="list-group">
                             @foreach($pendingEvaluations as $evaluation)
-                                <a href="{{ route('evaluations.show', $evaluation) }}" class="list-group-item list-group-item-action">
+                                <a href="{{ route('evaluations.show', [$evaluation, 'I']) }}" class="list-group-item list-group-item-action">
                                     <div class="d-flex w-100 justify-content-between">
                                         <h6 class="mb-1">Tahun {{ $evaluation->evaluationPeriod->tahun }}</h6>
                                         <small>Penilaian</small>

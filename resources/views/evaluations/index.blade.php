@@ -64,7 +64,9 @@
                                 @endif
                             </td>
                             <td>
-                                <a href="{{ route('evaluations.show', $evaluation) }}" class="btn btn-sm btn-info">
+                                <a href="{{ route('evaluations.show', [$evaluation, 'I']) }}" class="btn btn-sm btn-info">
+                                    <i class="fas fa-eye"></i>
+                                </a>
                                     <i class="fas fa-eye"></i>
                                 </a>
                                 @can('update', $evaluation)

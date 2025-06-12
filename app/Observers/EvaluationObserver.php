@@ -29,15 +29,6 @@ class EvaluationObserver
                 'selesai' => 'Selesai',
                 'reopened' => 'Dibuka Semula',
             ];
-            
-            Activity::create([
-                'description' => 'Status penilaian diubah ke ' . ($statusMap[$evaluation->status] ?? $evaluation->status),
-                'changes' => null,
-                'subject_type' => Evaluation::class,
-                'subject_id' => $evaluation->id,
-                'causer_type' => User::class,
-                'causer_id' => auth()->id(),
-            ]);
         }
     }
 }

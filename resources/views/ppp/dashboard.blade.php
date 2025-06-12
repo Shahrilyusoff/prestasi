@@ -51,13 +51,13 @@
                     @if($pendingEvaluations->count() > 0)
                         <div class="list-group">
                             @foreach($pendingEvaluations as $evaluation)
-                                <a href="{{ route('evaluations.show', $evaluation) }}" class="list-group-item list-group-item-action">
+                                <a href="{{ route('evaluations.show', [$evaluation, 'I']) }}" class="list-group-item list-group-item-action">
                                     <div class="d-flex w-100 justify-content-between">
                                         <h6 class="mb-1">{{ $evaluation->pyd->name }}</h6>
                                         <small>Penilaian</small>
                                     </div>
                                     <small class="text-muted">
-                                        {{ $evaluation->evaluationPeriod->tahun }} | 
+                                        {{ $evaluation->evaluationPeriod->tahun }} |
                                         Status: <span class="badge bg-warning">Draf PPP</span>
                                     </small>
                                 </a>

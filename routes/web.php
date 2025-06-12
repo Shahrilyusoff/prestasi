@@ -51,19 +51,26 @@ Route::middleware('auth')->group(function () {
 // Evaluation Routes
 Route::middleware('auth')->group(function () {
     Route::resource('evaluations', EvaluationController::class);
-    Route::get('evaluations/{evaluation}/{step?}', [EvaluationController::class, 'show'])
-        ->name('evaluations.show')
-        ->where('step', '[I|II|III|IV|V|VI|VII|VIII|IX]+');
+    
+    // Section navigation - should come before resource to take precedence
+    Route::get('evaluations/{evaluation}/{step}', [EvaluationController::class, 'show'])
+         ->name('evaluations.show');
+    
+    // Section updates
     Route::put('evaluations/{evaluation}/update-section', [EvaluationController::class, 'updateSection'])
          ->name('evaluations.update-section');
     Route::put('evaluations/{evaluation}/update-scores', [EvaluationController::class, 'updateScores'])
          ->name('evaluations.update-scores');
+    
+    // Submissions
     Route::post('evaluations/{evaluation}/submit-pyd', [EvaluationController::class, 'submitPYD'])
          ->name('evaluations.submit-pyd');
     Route::post('evaluations/{evaluation}/submit-ppp', [EvaluationController::class, 'submitPPP'])
          ->name('evaluations.submit-ppp');
     Route::post('evaluations/{evaluation}/submit-ppk', [EvaluationController::class, 'submitPPK'])
          ->name('evaluations.submit-ppk');
+    
+    // Admin controls
     Route::post('evaluations/{evaluation}/reopen', [EvaluationController::class, 'reopen'])
          ->name('evaluations.reopen');
     Route::post('evaluations/{evaluation}/reassign', [EvaluationController::class, 'reassign'])
