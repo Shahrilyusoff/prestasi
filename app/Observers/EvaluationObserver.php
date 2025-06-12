@@ -9,14 +9,7 @@ class EvaluationObserver
 {
     public function created(Evaluation $evaluation)
     {
-        Activity::create([
-            'description' => 'Penilaian baru dicipta untuk ' . $evaluation->pyd->name,
-            'changes' => null,
-            'subject_type' => Evaluation::class,
-            'subject_id' => $evaluation->id,
-            'causer_type' => User::class,
-            'causer_id' => auth()->id(),
-        ]);
+
     }
 
     public function updated(Evaluation $evaluation)
